@@ -1,5 +1,7 @@
 //-------------------------------------------------------------------
 #include <stdio.h>
+#include <stdint.h>   // dla nazw typów zastępczycz np. int_fast8_t
+
 #include <limits.h>   // dla limitów
 //-------------------------------------------------------------------
 void funkcja(void);
@@ -76,6 +78,15 @@ int main(void)
   scanf("%c", &znak);
   printf("Kod znaku %c = %d\n", znak, znak);
 
+  // w C nie ma bool ani true ani false (heh)
+  _Bool typLogiczny = 1; 
+  
+  // grupa typów z dokładnie określoną ilościa bitów:
+  int32_t        int_32_ze_znakiem = 0;
+  // grupa typów z minimalną ilościa bitów:
+  int_least8_t   int_przynajmniej_8 = 0;
+  // grupa typów z najszybszym typem o tej wielkości
+  int_fast8_t    int_szybkie_typy = 0;
 
   return 0;	
 }
