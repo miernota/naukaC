@@ -1,2 +1,5 @@
 # naukaC
-Moje poligon doświedczalny w C
+Mój poligon doświedczalny w C
+
+Co tu więcej mam napisać ?
+
