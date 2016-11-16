@@ -2,6 +2,9 @@
 
 int main(void)
 {
-  printf("dziala \n");
+  char znak = '\xFF';
+  
+  printf("dziala %c\n",znak);
+  
   return 0;
 }
