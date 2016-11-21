@@ -1,6 +1,7 @@
 //-------------------------------------------------------------------
 #include <stdio.h>
 #include <stdint.h>   // dla nazw typów zastępczycz np. int_fast8_t
+#include <inttypes.h> // dołancza <stdinit.h>
 
 #include <limits.h>   // dla limitów
 //-------------------------------------------------------------------
@@ -46,8 +47,11 @@ int main(void)
   printf("sizeof(unsigned long long) = %zu\n", sizeof(unsigned long long));
   printf("sizeof(float) = %zu\n", sizeof(float));
   printf("sizeof(char) = %zu\n", sizeof(char));
-  
-  
+  printf("sizeof(float) = %zu\n", sizeof(float));
+  printf("sizeof(double) = %zu\n", sizeof(double));
+  printf("sizeof(long double) = %zu\n", sizeof(long double));
+
+ 
   // przyrostki u, l, ll, mogą być pisane duzymi literami
   // rowniez kolejnosc moze byc zamieniona np: 2ULL i 2LLU to jedno i to samo	
   unsigned ui = 124u; // to jest int
@@ -63,6 +67,10 @@ int main(void)
   printf("ui = %u, lon1 = %ld, udwalongi=%#llx, maly = %hu\n" 
          ,ui ,lon1, udwalongi, maly);
 
+  // float           = 4 bajty
+  // double          = 8 bajtow
+  // long dobuble    = 16 bajtow
+
   //czysta moja hipoteza
   //short     - 8-bitow min
   //int       - 16-bity min. najlepiej dopasowany do maszyny
@@ -72,7 +80,7 @@ int main(void)
   // FFFF              short(2)
   // FFFFFFFF          int(4)
   // FFFFFFFFFFFFFFFF  long(8) i long long(8)
-
+  
   char znak = '\xFF';
   printf("Podaj znak i nacisnij ENTER : ");
   scanf("%c", &znak);
@@ -87,6 +95,27 @@ int main(void)
   int_least8_t   int_przynajmniej_8 = 0;
   // grupa typów z najszybszym typem o tej wielkości
   int_fast8_t    int_szybkie_typy = 0;
+
+  int32_t zm = 12345678;
+  // makro z <inttypes.h> 
+  printf("(makro) zm = %" PRId32 "\n", zm);
+
+  // domyślnie wszystkie takie liczby są podwójnej precyzji (double)
+  // wiec przyrostek f lub F nakazuje pojedyńczą precyzję
+  // czyli float
+  float  flo = .23e-5f;
+  double dub = -1.56E+12;
+  // to nowosc w C99, liczby zmiennoprzecinkowe zapisane
+  // w postaci szesnastkowej tu zamiast f/F jest p/P
+  // UWAGA! tu wykladnik jest potęgą 2 NIE 10 !!!!!!!!!!
+  double dziwak = 0xa.1fp10;  // (10 + 1/6 + 15/256 ) * 1024 = 10364.0 
+  // f wyswietla float i double w postaci dziesietnej
+  // e w postaci wykladniczej
+  // a w postaci szesnastkowej-wykladniczej
+  printf("dziwak = %f, %e , %a\n",dziwak,dziwak,dziwak);
+  long double ldub = .8E-5;
+  printf("dub = %Lf , %Le , %La\n",ldub,ldub,ldub);
+
 
   return 0;	
 }
